@@ -11,8 +11,8 @@ int main()
 	//FChild* MyChild = new FChild();
 	//delete MyChild;
 
-	FParent* P = new FParent();
-	cout << P << endl;
+	//FParent* P = new FParent();
+	//cout << P << endl;
 
 
 
@@ -31,6 +31,7 @@ int main()
 	 //FParent Destructor
 
 	vector<FParent*> Family;
+	Family.push_back(new FParent());
 	Family.push_back(new FChild());
 	Family.push_back(new FChild());
 	Family.push_back(new FGrandChild());
@@ -39,12 +40,31 @@ int main()
 
 	for (int i = 0; i < Family.size(); i++)
 	{
-		Family[i];
+		Family[i]->WhoamI();
+		// 정확하냐? 유효하냐?, Is_Valid
+		//dynamic_cast<FGrandChild*>(Family[i]); // 바뀔수도 안 바뀔수도 있다 그러면 null이 발생
+		// dynamic_cast 형변환 입니다. 그런데 이는 성능이 좋지 않아서 잘 사용 안합니다.
+		// 이러한 과정을 다운캐스팅 이라고 합니다. 자식을 아래로 내리기 때문입니다.
+		FGrandChild* GrandChild = dynamic_cast<FGrandChild*>(Family[i]);
+		if (GrandChild != nullptr)
+		{
+			GrandChild->PlayGround();
+		}
 	}
 
-	for (int i = 0; i < Family.size(); i++)
-	{
-		delete Family[i];
-	}
+	//for (int i = 0; i < Family.size(); i++)
+	//{
+	//	delete Family[i];
+	//}
+
+
+	cout << "*********" << endl;
+	cout << "*P      *" << endl;
+	cout << "*       *" << endl;
+	cout << "*    M  *" << endl;
+	cout << "*       *" << endl;
+	cout << "*       *" << endl;
+	cout << "*      G*" << endl;
+	cout << "*********" << endl;
 	return 0;
 }

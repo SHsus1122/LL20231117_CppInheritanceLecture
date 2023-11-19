@@ -12,3 +12,8 @@ FChild::~FChild()
 	std::cout << "FChild Denstructor" << std::endl;
 
 }
+
+void FChild::WhoamI()
+{
+	std::cout << "Child" << std::endl;
+}
